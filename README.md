@@ -1,1 +1,1 @@
-# GB.TypeScript
+# GeekBrains learning TypeScript repo
