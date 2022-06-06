@@ -1,32 +1,26 @@
-import { renderUserBlock } from './user.js'
-import { renderSearchFormBlock } from './search-form.js'
+import { renderUserBlock, getUserData, getFavouritesAmount } from './user.js'
+import { renderSearchFormBlock, search } from './search-form.js'
 import { renderSearchStubBlock } from './search-results.js'
 import { renderToast } from './lib.js'
 
 
 
-function getDefaultCheckInDate() {
-  const now = new Date()
-  return new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate() + 1
-  )
-}
+const user = {userName: 'Wade Warren', avatarUrl: './img/avatar.png'}
+const favouritesAmount = 42
 
-function getDefaultCheckOutDate() {
-  return new Date(getDefaultCheckInDate().getFullYear(), getDefaultCheckInDate().getMonth(), getDefaultCheckInDate().getDate() + 2)
-}
-
-const checkInDate = getDefaultCheckInDate()
-const checkOutDate = getDefaultCheckOutDate()
+localStorage.setItem('user', JSON.stringify(user))
+localStorage.setItem('favouritesAmount', JSON.stringify(favouritesAmount))
 
 window.addEventListener('DOMContentLoaded', () => {
-  renderUserBlock('Wade Warren', './img/avatar.png', 0)
-  renderSearchFormBlock(checkInDate, checkOutDate)
-  renderSearchStubBlock()
-  renderToast(
-    {text: 'Это пример уведомления. Используйте его при необходимости', type: 'success'},
-    {name: 'Понял', handler: () => {console.log('Уведомление закрыто')}}
+  renderUserBlock(
+    getUserData('user'), 
+    +(getFavouritesAmount('favouritesAmount'))
   )
+  renderSearchFormBlock()
+  renderSearchStubBlock()
+  search()
+  // renderToast(
+  //   {text: 'Это пример уведомления. Используйте его при необходимости', type: 'success'},
+  //   {name: 'Понял', handler: () => {console.log('Уведомление закрыто')}}
+  // )
 })

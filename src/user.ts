@@ -1,6 +1,25 @@
 import { renderBlock } from './lib.js'
 
-export function renderUserBlock (userName: string, profilePhoto: string, favoriteItemsAmount: number) {
+
+
+export function getUserData(user): unknown {
+  const userObj = JSON.parse(localStorage.getItem(user))
+  const userProps: object = {userName: 'unset user-name', avatarUrl: 'unset avatar'}
+
+  if (
+    typeof userObj.userName === 'string' 
+    && typeof userObj.avatarUrl === 'string'
+  ) {
+    return userObj
+  }
+  return userProps
+}
+
+export function getFavouritesAmount(favouritesAmount): unknown {
+  return localStorage.getItem(favouritesAmount)
+}
+
+export function renderUserBlock (userData, favoriteItemsAmount?: number) {
   const favoritesCaption = favoriteItemsAmount ? favoriteItemsAmount : 'ничего нет'
   const hasFavoriteItems = favoriteItemsAmount ? true : false
   
@@ -8,9 +27,9 @@ export function renderUserBlock (userName: string, profilePhoto: string, favorit
     'user-block',
     `
     <div class="header-container">
-      <img class="avatar" src="${profilePhoto}" alt="Wade Warren" />
+      <img class="avatar" src="${userData.avatarUrl}" alt="Wade Warren" />
       <div class="info">
-        <p class="name">${userName}</p>
+        <p class="name">${userData.userName}</p>
         <p class="fav">
         <i class="heart-icon${hasFavoriteItems ? ' active' : ''}"></i>${favoritesCaption}
       </p>
