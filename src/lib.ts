@@ -9,8 +9,8 @@ export function renderToast (message, action) {
   if (message != null) {
     messageText = `
     <div id="info-block" class="info-block ${message.type}">
-    <p>${message.text}</p>
-    <button id="toast-main-action">${action?.name || 'Закрыть'}</button>
+      <p>${message.text}</p>
+      <button id="toast-main-action">${action?.name || 'Закрыть'}</button>
     </div>
     `
   }
