@@ -27,8 +27,11 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 // Практическое задание №4
-// 1. Произвести рефакторинг логики поиска таким образом, чтобы все провайдеры данных о
-// недвижимости работали по общему протоколу, который скрывает для системы разницу во
-// взаимодействиях между различными SDK и API.
-// 2. Добавить поле сортировки результатов поисков: дешевле, дороже, ближе.
-// 3. * Применить паттерн Компоновщик для работы с провайдерами данных.
+// 1. Включить флаги noImplicitAny, strictNullChecks, strictFunctionTypes,
+// strictPropertyInitialization и исправить все возникшие в проекте ошибки.
+// 2. * Включить флаги strictBindCallApply, noImplicitThis, noPropertyAccessFromIndexSignature,
+// noUncheckedIndexedAccess, noImplicitReturns, noFallthroughCasesInSwitch и исправить
+// все возникшие в проекте ошибки.
+// 3. * Для опций noUnusedLocals и noUnusedParameters установить аналогичные правила
+// ESLint.
+
